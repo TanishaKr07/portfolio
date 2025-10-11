@@ -37,7 +37,6 @@ nav a {
 }
 nav a.current {
   border-bottom-color: var(--color-accent);
-  padding-bottom: 0.1em;
   border-bottom-style: solid;
 }
 
