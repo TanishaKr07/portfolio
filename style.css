@@ -67,15 +67,23 @@ form label {
     gap: 1em;
 }
 .projects article {
-    display: grid;                 /* make each article a grid */
-    grid-template-rows: subgrid;   /* align rows with parent grid */
-    grid-row: span 3;              /* each article spans 3 rows */
-    gap: 1em;                      /* space between elements inside article */
+    display: grid;                 
+    grid-template-rows: subgrid;   
+    grid-row: span 3;              
+    gap: 1em;                      
 }
 .projects article h2 {
-    margin: 0;                     /* remove extra spacing for headings */
+    margin: 0;                     
 }
 h1, h2, h3, h4, h5, h6 { 
   line-height: 1.1; 
   text-wrap: balance;
+  margin: 1em 0;
+}
+h1 {
+    font-size: 4em;          
+}
+
+h2 {
+    font-size: 2em;          
 }
