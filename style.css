@@ -61,23 +61,8 @@ form label {
   grid-column: 1 / -1;
 }
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em;
-}
-
-.projects article {
-  display: grid;
-  gap: 1em; /* spacing inside each article */
-}
-
-.projects article h2 {
-  font-size: 2em; /* large, but not absurdly huge */
-  margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  overflow-wrap: break-word; /* fallback for unsupported browsers */
-}
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1em;
+  }
