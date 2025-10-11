@@ -45,20 +45,30 @@ nav a:hover {
 }
 
 
-form input,
-form textarea,
-form button {
-  font: inherit;
-}
 form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em;
+  align-items: center;
 }
+
 form label {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-column: 1 / -1;
+  display: contents; /* or wrap text in <span> if using manual columns */
+}
+
+form input,
+form textarea {
+  grid-column: 2 / 3; /* put input in second column */
+}
+form button {
+  grid-column: 1 / -1; /* make button span both columns */
+  justify-self: start;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  background-color: var(--color-accent);
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .projects {
