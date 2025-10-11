@@ -61,6 +61,17 @@ form textarea {
   grid-column: 2 / 3; /* put input in second column */
 } 
 
+.submit-btn {
+  height: 40px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-bottom: 2px solid black;
+  width: 100%;
+  background-color: transparent;
+}
+
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
