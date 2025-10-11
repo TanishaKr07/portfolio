@@ -1,6 +1,8 @@
-:root {
+html {
   --color-accent: oklch(65% 50% 0);
+  accent-color: var(--color-accent);
 }
+
 
 body {
   font: 100% / 1.5 system-ui;
@@ -13,7 +15,7 @@ body {
 nav {
   display: flex;
   padding: 0.5em;
-  margin-bottom: 50px;
+  margin-bottom: 2em;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
@@ -31,6 +33,7 @@ nav a {
   text-align: center;
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
+  border-bottom-color: transparent;
 }
 nav a.current {
   border-bottom-color: var(--color-accent);
