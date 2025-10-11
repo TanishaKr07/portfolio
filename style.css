@@ -16,7 +16,9 @@ nav {
   display: flex;
   padding: 0.5em;
   margin-bottom: 2em;
-  border-bottom: 2px solid oklch(65% 50% 0);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: oklch(80% 3% 200);
 }
 
 nav ul,
@@ -29,10 +31,14 @@ nav a {
   color: inherit;
   flex: 1;
   text-align: center;
+  border-bottom-width: 0.4em;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 }
 nav a.current {
-  border-bottom: 3px solid oklch(from var(--color-accent) 80% 5% h);
-  padding: 0.25em;
+  border-bottom-color: var(--color-accent);
+  padding-bottom: 0.1em;
+  border-bottom-style: solid;
 }
 
 nav a:hover {
