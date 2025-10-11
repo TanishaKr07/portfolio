@@ -16,7 +16,7 @@ nav {
   display: flex;
   padding: 0.5em;
   margin-bottom: 2em;
-  border-bottom: 2px solid oklch(from var(--color-accent) 80% 5% h);
+  border-bottom: 2px solid oklch(80% 3% 200);
 }
 
 nav ul,
@@ -31,9 +31,7 @@ nav a {
   text-align: center;
 }
 nav a.current {
-  border-bottom-color: var(--color-accent);
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
+  border-bottom: 3px solid oklch(from var(--color-accent) 80% 5% h);
   padding: 0.25em;
 }
 
