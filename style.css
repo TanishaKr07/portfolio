@@ -61,29 +61,21 @@ form label {
   grid-column: 1 / -1;
 }
 
-/* Step 4.2: Make the projects container a responsive grid */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em; /* space between articles */
+  gap: 1em;
 }
-
-/* Step 4.3: Align article contents with subgrid */
 .projects article {
-  display: grid;
-  grid-template-rows: subgrid; /* aligns h2, img, p across columns */
-  grid-row: span 3;             /* article spans 3 rows in parent grid */
-  gap: 0.5em;                   /* spacing inside article */
-}
-
-/* Step 4.4: Style article headings */
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+} 
 .projects article h2 {
-  font-size: 400%; /* make headings large for contrast */
-  margin: 0;       /* remove extra spacing */
+  font-size: 400%;
+  margin: 0;
 }
-
-/* Step 4.4: Default styles for all headings */
 h1, h2, h3, h4, h5, h6 {  
   line-height: 1.1;
-  text-wrap: balance; /* optional, browser support limited */
+  text-wrap: balance;
 }
