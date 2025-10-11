@@ -19,10 +19,6 @@ nav {
   border-bottom: 2px solid oklch(80% 3% 200);
 }
 
-nav ul,
-nav li {
-  display: contents;
-}
 
 nav a {
   text-decoration: none;
@@ -60,7 +56,7 @@ form label {
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
 }
-.projects article {
+.projects article { 
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
