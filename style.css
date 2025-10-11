@@ -59,17 +59,7 @@ form label {
 form input,
 form textarea {
   grid-column: 2 / 3; /* put input in second column */
-}
-form button {
-  grid-column: 1 / -1; /* make button span both columns */
-  justify-self: start;
-  padding: 0.5em 1em;
-  font-size: 1em;
-  background-color: var(--color-accent);
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+} 
 
 .projects {
     display: grid;
