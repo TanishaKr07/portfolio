@@ -12,9 +12,6 @@ body {
 
 nav {
   display: flex;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
   padding: 0.5em;
   margin-bottom: 50px;
   border-bottom-width: 1px;
@@ -22,10 +19,19 @@ nav {
   border-bottom-color: oklch(80% 3% 200);
 }
 
+nav ul,
+nav li {
+  display: contents;
+}
+
 nav a {
+  text-decoration: none;
+  color: inherit;
   flex: 1;
   border-bottom-width: 0.4em;
   padding-bottom: 0.1em;
+  text-align: center;
+  border-bottom-width: 0.4em;
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
 } 
@@ -55,7 +61,7 @@ form label {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
-}
+} 
 .projects article h2 {
   font-size: 400%;
   margin: 0;
