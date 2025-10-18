@@ -39,3 +39,32 @@ for (let p of pages) {
   }
   nav.append(a);
 }
+
+
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+  <label class="color-scheme", position="absolute", top="1em", right="1em", font-size="0.8em", font-family="inherit">
+    Theme:
+    <select id="theme-switch">
+      <option value="light dark">Default</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+  `
+);
+
+const select = document.querySelector('#theme-switch');
+select.addEventListener('input', function (event) {
+  const scheme = event.target.value;
+  console.log('color scheme changed to', scheme);
+  document.documentElement.style.setProperty('color-scheme', scheme);
+  localStorage.colorScheme = scheme;
+});
+
+if ('colorScheme' in localStorage) {
+  const savedScheme = localStorage.colorScheme;
+  document.documentElement.style.setProperty('color-scheme', savedScheme);
+  select.value = savedScheme;
+}
