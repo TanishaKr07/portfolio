@@ -44,7 +44,9 @@ for (let p of pages) {
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
-  <label class="color-scheme", position="absolute", top="1em", right="1em", font-size="0.8em", font-family="inherit">
+  <label class="color-scheme"
+  style="position:absolute; top:1em; right:1em; font-size:0.8em; 
+  font-family:inherit;">
     Theme:
     <select id="theme-switch">
       <option value="light dark">Default</option>
