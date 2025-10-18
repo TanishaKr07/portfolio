@@ -15,7 +15,7 @@ let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
-  { url: 'resume/', title: 'Resume/CV' },
+  { url: 'resume/', title: 'Resume' },
 ];
 
 let nav = document.createElement('nav');
