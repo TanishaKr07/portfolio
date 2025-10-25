@@ -2,20 +2,20 @@
     {
         "title": "Personal Portfolio" ,
         "year":"2025",
-        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/portfolio-project.png",
+        "image": "https://thumbs.dreamstime.com/b/hi-there-inscription-handwritten-lettering-illustration-black-vector-text-speech-bubble-simple-outline-marker-style-hi-there-194142459.jpg",
         "description": "My personal porfolio, highlighting a bit about myself, my projects, my resume, and how to contact me!"
     },
     {
         "title": "OCD Comorbidity Analysis",
         "year":"2025",
-        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/ocd-project.png",
+        "image": "https://iocdf.org/wp-content/uploads/2023/06/depressed_woman_sitting_on_floor_and_hugging_knees._mental_health_concept__720.png",
         "description": "This project uses a synthetic dataset of 1,500 simulated OCD patients to explore potential patterns and relationships between demographic factors and OCD comorbidities. It focuses on exploratory data analysis (EDA) and baseline predictive modeling."
     },
     {
         "title": "Holiday Recipes Classifier",
         "year":"2024",
-        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/portfolio-project.png",
-        "description": "Non veritatis officia ducimus exercitationem, cum maiores voluptates laborum eius sequi? Recusandae, qui ullam excepturi perspiciatis doloremque dolores culpa tempora voluptas nam eos quidem nostrum porro facere? Laborum, temporibus ex."
+        "image": "https://www.midwestliving.com/thmb/vRf9ewBdA6xvB7AFy_POTgZqn9M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/CD_1140_macarons-2000-4425cb0d8eaf4dcfbdb20225b0ed1e2a.jpg",
+        "description": "In this project, we investigated the difference in calorie content between dessert and non-dessert holiday foods 🎂 To do so, we analyzed two datasets consisting of recipes and ratings posted since 2008 on food.com. The original purpose of the dataseets is for the recommender sustem research paper, Generating Personalized Recipes from Historical User Preferences by Majumder et al."
     },
     {
         "title": "Perspiciatis, tempore. Facilis, ullam.",
