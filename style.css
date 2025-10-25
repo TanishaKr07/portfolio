@@ -96,7 +96,7 @@ h2 {
   margin: 2em auto;
   padding: 1.5em;
   max-width: 800px;
-  background: rgb(244, 20, 210);
+  background: rgba(99, 97, 99, 0.11);
   border-radius: 1em;
   box-shadow: 0 4px 10px rgb(244, 20, 210);
   text-align: center;
