@@ -1,14 +1,14 @@
 [
     {
-        "title": "Personal Portfolio",
+        "title": "Personal Portfolio" ,
         "year":"2025",
-        "image": "https://thumbs.dreamstime.com/b/hi-there-inscription-handwritten-lettering-illustration-black-vector-text-speech-bubble-simple-outline-marker-style-hi-there-194142459.jpg",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "My personal porfolio, highlighting a bit about myself, my projects, my resume, and how to contact me!"
     },
     {
         "title": "OCD Comorbidity Analysis",
         "year":"2025",
-        "image": "https://iocdf.org/wp-content/uploads/2023/06/depressed_woman_sitting_on_floor_and_hugging_knees._mental_health_concept__720.png",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "This project uses a synthetic dataset of 1,500 simulated OCD patients to explore potential patterns and relationships between demographic factors and OCD comorbidities. It focuses on exploratory data analysis (EDA) and baseline predictive modeling."
     },
     {
