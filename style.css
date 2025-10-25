@@ -92,21 +92,29 @@ h1 {
 h2 {
     font-size: 2em;          
 }
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* four equal columns */
-  gap: 1em;
-  text-align: center; /* optional, for symmetry */
+#profile-stats {
+  margin: 2em auto;
+  padding: 1.5em;
+  max-width: 800px;
+  background: #f8f9fa;
+  border-radius: 1em;
+  box-shadow: 0 4px 10px rgb(244, 20, 210);
+  text-align: center;
 }
 
-/* Place all <dt> elements on the first grid row */
-.grid-list dt {
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+}
+
+#profile-stats dt {
   grid-row: 1;
   font-weight: bold;
 }
 
-/* Place all <dd> elements on the second grid row */
-.grid-list dd {
+#profile-stats dd {
   grid-row: 2;
-  margin: 0; /* prevents extra spacing */
+  margin: 0;
 }
+
