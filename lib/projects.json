@@ -2,19 +2,19 @@
     {
         "title": "Personal Portfolio" ,
         "year":"2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/portfolio-project.png",
         "description": "My personal porfolio, highlighting a bit about myself, my projects, my resume, and how to contact me!"
     },
     {
         "title": "OCD Comorbidity Analysis",
         "year":"2025",
-        "image": "https://github.com/TanishaKr07/ocd-comorbidity-analysis/tree/main",
+        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/ocd-project.png",
         "description": "This project uses a synthetic dataset of 1,500 simulated OCD patients to explore potential patterns and relationships between demographic factors and OCD comorbidities. It focuses on exploratory data analysis (EDA) and baseline predictive modeling."
     },
     {
         "title": "Holiday Recipes Classifier",
         "year":"2024",
-        "image": "https://github.com/TanishaKr07/HolidayRecipesClassifier",
+        "image": "https://github.com/TanishaKr07/portfolio/blob/main/images/portfolio-project.png",
         "description": "Non veritatis officia ducimus exercitationem, cum maiores voluptates laborum eius sequi? Recusandae, qui ullam excepturi perspiciatis doloremque dolores culpa tempora voluptas nam eos quidem nostrum porro facere? Laborum, temporibus ex."
     },
     {
