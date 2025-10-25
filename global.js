@@ -70,3 +70,38 @@ if ('colorScheme' in localStorage) {
   document.documentElement.style.setProperty('color-scheme', savedScheme);
   select.value = savedScheme;
 }
+
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    if (!response.ok) {
+    throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // inspect the response
+    console.log('Response received:', response);
+
+    // Parse the JSON data
+    const data = await response.json();
+    return data;
+
+
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+} 
+
+export function renderProjects(project, containerElement, headingLevel = 'h2') {
+  // write javascript that will allow dynamic heading levels based on previous function
+  containerElement.innerHTML = '';
+  project.forEach(proj => {
+    const article = document.createElement('article');
+    article.innerHTML = `
+    <${headingLevel}>${proj.title}</${headingLevel}>
+    <img src="${proj.image}" alt="${proj.title}">
+    <p>${proj.description}</p>
+`;
+    containerElement.appendChild(article);
+  });
+}
