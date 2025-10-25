@@ -1,18 +1,21 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod ipsa tempora architecto laboriosam et deleniti quaerat esse, ad animi culpa ratione amet iste nesciunt distinctio facilis officiis nihil. Aperiam, optio."
+        "title": "Personal Portfolio" ,
+        "year":"2025",
+        "image": "./images/portfolio-project.png",
+        "description": "My personal porfolio, highlighting a bit about myself, my projects, my resume, and how to contact me!"
     },
     {
-        "title": "Rem consequatur iusto natus!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "title": "OCD Comorbidity Analysis",
+        "year":"2025",
+        "image": "./images/ocd-project.png",
+        "description": "This project uses a synthetic dataset of 1,500 simulated OCD patients to explore potential patterns and relationships between demographic factors and OCD comorbidities. It focuses on exploratory data analysis (EDA) and baseline predictive modeling."
+    },
+    {
+        "title": "Holiday Recipes Classifier",
+        "year":"2024",
+        "image": "./images/dessert-project.png",
         "description": "Non veritatis officia ducimus exercitationem, cum maiores voluptates laborum eius sequi? Recusandae, qui ullam excepturi perspiciatis doloremque dolores culpa tempora voluptas nam eos quidem nostrum porro facere? Laborum, temporibus ex."
-    },
-    {
-        "title": "Voluptates facere dolore incidunt.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Exercitationem cum quas omnis tempora cumque ab. Praesentium, explicabo vero quod obcaecati nobis blanditiis voluptatibus recusandae et cupiditate esse. Molestiae doloribus vero nemo asperiores in minima reiciendis maiores reprehenderit repellat?"
     },
     {
         "title": "Perspiciatis, tempore. Facilis, ullam.",
