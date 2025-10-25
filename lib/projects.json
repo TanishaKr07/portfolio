@@ -14,7 +14,7 @@
     {
         "title": "Holiday Recipes Classifier",
         "year":"2024",
-        "image": "https://www.midwestliving.com/thmb/vRf9ewBdA6xvB7AFy_POTgZqn9M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/CD_1140_macarons-2000-4425cb0d8eaf4dcfbdb20225b0ed1e2a.jpg",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "In this project, we investigated the difference in calorie content between dessert and non-dessert holiday foods 🎂 To do so, we analyzed two datasets consisting of recipes and ratings posted since 2008 on food.com. The original purpose of the dataseets is for the recommender sustem research paper, Generating Personalized Recipes from Historical User Preferences by Majumder et al."
     },
     {
