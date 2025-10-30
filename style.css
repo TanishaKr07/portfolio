@@ -193,4 +193,5 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     /* 3. Spacing/Gap */
     /* Adds space between the SVG (chart) and the UL (legend) */
     gap: 20px; /* You can adjust this value */
+    margin-bottom: 20px;
 }
