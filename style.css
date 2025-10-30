@@ -39,7 +39,7 @@ nav a {
 }
 
 nav a.current {
-  border-bottom-color: var(--border-bottom);
+  border-bottom-color: var(--color-accent);
   padding-bottom: 0.1em;
 }
 
@@ -138,6 +138,10 @@ You may find border-radius useful to add slight rounding to the corners or even 
     padding: 1em;
     margin: 2em 0;
 }
+.legend {
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+}
+
 
 /*Applying layout on the list to make it look like a legend
 I applied display: grid to the <ul> (avoid using the <ul> tag selector, use selector by class instead). To make the grid make best use of available space, I used an auto-fill grid template, and set the min-width of the list items to a reasonable value.
@@ -147,7 +151,6 @@ This lays them all out on one line if there’s space, or multiple columns if no
 
 I also applied display: flex on each <li> (also give it a class name and apply CSS rule on the class) to vertically center align the text and the swatch (align-items: center) and give it spacing via gap.
 
-// how you add class name as attributes using D3
 let legend = d3.select('.legend');
 data.forEach((d, idx) => {
     legend.append('li')
@@ -167,19 +170,12 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     aspect-ratio: 1 / 1;
     background-color: var(--color);
     border-radius: 0.3em;
-    align-items: center;
 }
 .legend li span {
     font-size: 0.9em;
     align-items: center;
 }
 /*You probably also want to specify a border around the legend, as well as spacing inside it (padding) and around it (margin). The final result will vary depending on your exact CSS, but this was mine:*/
-.legend {
-    border: 1px solid oklch(60.039% 0.21333 341.555);
-    padding: 1em;
-    margin: 2em 0;
-    align-items: center;
-}
 
 .chart-legend-container {
     /* 1. Enable Flexbox on the container */
@@ -196,19 +192,25 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     margin-bottom: 20px;
 }
 
-&:has(path:hover) {
-  path:not(:hover) {
-    opacity: 0.5;
-  }
+/* dim un-hovered paths when one is hovered */
+svg:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
 }
+
+/* pie slice styles */
 path {
   transition: 300ms;
   cursor: pointer;
 }
-.selected {
-  --color: oklch(58.617% 0.19965 1.455) !important;
 
-  &:is(path) {
-    fill: var(--color);
-  }
+/* highlight selected path */
+path.selected {
+  fill: oklch(58.617% 0.19965 1.455) !important;
+}
+
+.searchBar {
+    width: 100%; /* Make it take the full width of its parent */
+    padding: 0.5em; /* Add some padding to make it look nicer */
+    box-sizing: border-box; /* Ensures padding doesn't add to the width */
+    margin-bottom: 1em; /* Add space below it */
 }
