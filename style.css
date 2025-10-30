@@ -134,6 +134,7 @@ You may find border-radius useful to add slight rounding to the corners or even 
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 /*Applying layout on the list to make it look like a legend
@@ -164,13 +165,16 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     aspect-ratio: 1 / 1;
     background-color: var(--color);
     border-radius: 0.3em;
+    align-items: center;
 }
 .legend li span {
     font-size: 0.9em;
+    align-items: center;
 }
 /*You probably also want to specify a border around the legend, as well as spacing inside it (padding) and around it (margin). The final result will vary depending on your exact CSS, but this was mine:*/
 .legend {
     border: 1px solid oklch(60.039% 0.21333 341.555);
     padding: 1em;
     margin: 2em 0;
+    align-items: center;
 }

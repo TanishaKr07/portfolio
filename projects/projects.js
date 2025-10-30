@@ -33,7 +33,7 @@ let arcData = sliceGenerator(data); // Returns objects with startAngle/endAngle 
 
 // 3. Generate Path Strings and Render
 // Ensure d3.scaleOrdinal is defined correctly.
-let colors = d3.scaleOrdinal(d3.schemeTableau10); 
+let colors = d3.scaleOrdinal(d3.schemePastel1); 
 
 // --- 1. Draw the Paths (Pie Slices) ---
 let arcs = arcData.map((d) => arcGenerator(d)); 
