@@ -20,7 +20,7 @@ nav {
   display: flex;
   padding: 0.5em;
   margin-bottom: 2em;
-  border-bottom: 1px solid oklch(50% 10% 200 / 40%); 
+  border-bottom: 1px solid mediumvioletred; 
 }
 
 nav ul,
@@ -98,7 +98,7 @@ h2 {
   max-width: 800px;
   background: rgba(102, 97, 102, 0.11);
   border-radius: 1em;
-  box-shadow: 0 4px 10px rgb(244, 20, 210);
+  box-shadow: 0 4px 10px mediumvioletred;
   text-align: center;
 }
 
@@ -134,9 +134,10 @@ You may find border-radius useful to add slight rounding to the corners or even 
     flex-wrap: wrap;
     flex: 1;
     align-items: center;
-    border: 1px solid oklch(60.039% 0.21333 341.555);
+    border: 1px solid mediumvioletred;
     padding: 1em;
     margin: 2em 0;
+    text-align: center;
 }
 .legend {
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
@@ -205,7 +206,7 @@ path {
 
 /* highlight selected path */
 path.selected {
-  fill: oklch(58.617% 0.19965 1.455) !important;
+  fill: mediumvioletred !important;
 }
 
 .searchBar {
@@ -213,4 +214,6 @@ path.selected {
     padding: 0.5em; /* Add some padding to make it look nicer */
     box-sizing: border-box; /* Ensures padding doesn't add to the width */
     margin-bottom: 1em; /* Add space below it */
+    border-color: mediumvioletred;
+    ;
 }

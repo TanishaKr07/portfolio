@@ -114,5 +114,5 @@ searchInput.addEventListener('change', (event) => {
     renderPieChart(filteredProjects);
 }); 
 
-// ✅ Call on page load
+// Call on page load
 renderPieChart(projects);
