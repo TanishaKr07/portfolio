@@ -118,3 +118,43 @@ h2 {
   margin: 0;
 }
 
+/* --- 1. Styling the Legend Container (The Grid) --- */
+.legend {
+    list-style: none;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    font-family: inherit;
+    font-size: 0.8em;
+    background: var(--color-bg, #f0f0f0); /* Added default colors for safety */
+    padding: 0.5em; 
+    border: 1px solid var(--color-text, #d43597);
+    
+    /* Apply Grid Layout for Responsive Columns */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 1em; /* Spacing between columns/rows (larger gap) */
+}
+
+/* --- 2. Styling the List Item (The Flex Container) --- */
+.legend-item {
+    /* Apply Flex Layout for vertical alignment */
+    display: flex;
+    align-items: center; /* Vertically center align swatch and text */
+    gap: 0.5em; /* Spacing between the swatch and the text (smaller gap) */
+}
+
+/* --- 3. Styling the Swatch (The Square) --- */
+.swatch {
+    /* Set it to inline-block to accept width/height */
+    display: inline-block;
+    
+    /* Make it a square and set the color */
+    width: 1em;
+    aspect-ratio: 1 / 1; /* Ensures it's a perfect square */
+    background-color: var(--color); /* Uses the color passed from D3 */
+    
+    /* Add slight rounding to the corners */
+    border-radius: 3px; 
+    /* Optionally, set border-radius: 50% to make it a circle */
+}

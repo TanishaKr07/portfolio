@@ -25,32 +25,64 @@ projects.forEach(project => {
     });
 });
 
-let arc = d3.arc().innerRadius(0).outerRadius(50)({
-  startAngle: 0,
-  endAngle: 2 * Math.PI,
-});
-d3.select('svg').append('path').attr('d', arc).attr('fill', 'red');
+// 1. Define the Arc Generator (The "Drawer" that knows the shape)
+// We rename the variable from 'arc' to 'arcGenerator' for clarity and
+// define it as a function that will be called later.
+const arcGenerator = d3.arc()
+    .innerRadius(0)
+    .outerRadius(50); 
 
-let data = [1, 2];
-let total = 0;
-for (let d of data) {
-  total += d;
-}
-let angle = 0;
-let arcData = [];
+// 2. Data and Slice Calculation (The "Calculator" - Replaces manual loop)
+let data = [
+  { value: 1, label: 'apples' },
+  { value: 2, label: 'oranges' },
+  { value: 3, label: 'mangos' },
+  { value: 4, label: 'pears' },
+  { value: 5, label: 'limes' },
+  { value: 5, label: 'cherries' },
+];
+let sliceGenerator = d3.pie().value((d) => d.value);
+let arcData = sliceGenerator(data); // Returns objects with startAngle/endAngle calculated
 
-for (let d of data) {
-  let endAngle = angle + (d / total) * 2 * Math.PI;
-  arcData.push({ startAngle: angle, endAngle });
-  angle = endAngle;
-}
-let colors = ['gold', 'magenta'];
-let arcs = arcData.map((d) => arcGenerator(d));
-arcs.forEach((arc, idx) => {
+// 3. Generate Path Strings and Render
+// Ensure d3.scaleOrdinal is defined correctly.
+let colors = d3.scaleOrdinal(d3.schemeTableau10); 
+
+// --- 1. Draw the Paths (Pie Slices) ---
+let arcs = arcData.map((d) => arcGenerator(d)); 
+
+arcs.forEach((pathData, idx) => {
     d3.select('svg')
       .append('path')
-      .attr('d', arc)
-      .attr(
-        'fill', colors[idx]
-      ) 
-})
+      .attr('d', pathData)
+      // CORRECT: Call the ordinal scale like a function: colors(idx)
+      .attr('fill', colors(idx)); 
+});
+
+// --- 2. Build the Legend ---
+let legend = d3.select('.legend');
+
+// Iterate over the arcData, which holds the original data object in d.data
+arcData.forEach((d) => {
+    // Get the original index to use with the color scale
+    const idx = d.index;
+    
+    // Get the label and value from the original data object (d.data)
+    const label = d.data.label || `Slice ${idx + 1}`;
+    const value = d.data.value;
+
+    let listItem = legend.append('li')
+        // Apply the class for the item's layout (required for flex/grid)
+        .attr('class', 'legend-item') 
+        
+        // Pass the color value as a CSS variable using the correct function call: colors(idx)
+        .attr('style', `--color: ${colors(idx)}`); 
+
+    // The most flexible way: append elements separately
+    listItem.append('span')
+        .attr('class', 'swatch'); // Apply the swatch styling class
+        
+    listItem.append('text')
+        // Use a mix of the label (strong) and value (em)
+        .html(`<strong>${label}</strong> <em>(${value})</em>`);
+});
