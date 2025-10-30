@@ -96,23 +96,23 @@ function renderPieChart(projectsGiven, isInitialRender = false) {
     });
 }
 
+// Get search bar and initialize query
+const searchInput = document.querySelector('.searchBar');
+let query = '';
+
 // Ensure the search input only updates the query and calls renderProjects/renderPieChart
 searchInput.addEventListener('change', (event) => {
-    // update query value
     query = event.target.value;
-    // filter projects
     let filteredProjects = projects.filter((project) => {
         let values = Object.values(project).join('\n').toLowerCase();
         return values.includes(query.toLowerCase());
     });
-    
-    // Reset selection when searching, as the new data set is different
+
     selectedIndex = -1;
-    
-    // render filtered projects and re-render the chart/legend
+
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
 }); 
 
-// Call this function on page load (already present)
+// ✅ Call on page load
 renderPieChart(projects);
