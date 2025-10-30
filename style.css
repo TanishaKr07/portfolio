@@ -195,3 +195,20 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     gap: 20px; /* You can adjust this value */
     margin-bottom: 20px;
 }
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+.selected {
+  --color: oklch(58.617% 0.19965 1.455) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}

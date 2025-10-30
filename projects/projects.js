@@ -102,3 +102,95 @@ projectArticles.forEach((article, i) => {
         article.appendChild(yearElement);
     }
 });
+
+// Implement search functionality to filter projects based on user input
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+searchInput.addEventListener('change', (event) => {
+  // update query value
+  query = event.target.value;
+  // filter projects
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+  // render filtered projects
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+});
+
+// Refactor all plotting into one function
+function renderPieChart(projectsGiven) {
+  // re-calculate rolled data
+  let newRolledData = d3.rollups(
+    projectsGiven,
+    (v) => v.length,
+    (d) => d.year,
+  );
+  // re-calculate data
+  let newData = newRolledData.map(([year, count]) => {
+    return {
+        value: count,
+        label: year
+    }; // TODO
+  });
+  // re-calculate slice generator, arc data, arc, etc.
+  let newSliceGenerator = d3.pie().value((d) => d.value);
+  let newArcData = newSliceGenerator(newData);
+  let newArcs = newArcData.map((d) => arcGenerator(d));
+  
+  //clear up paths and legends
+    d3.selectAll('svg path').remove();
+    d3.selectAll('.legend li').remove();
+
+  // update paths and legends, refer to steps 1.4 and 2.2
+    newArcs.forEach((pathData, idx) => {
+        d3.select('svg')
+          .append('path')
+          .attr('d', pathData)
+          .attr('fill', colors(idx)); 
+    });
+}
+
+// Call this function on page load
+renderPieChart(projects);
+
+searchInput.addEventListener('change', (event) => {
+  let filteredProjects = setQuery(event.target.value);
+  // re-render legends and pie chart when event triggers
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+  renderPieChart(filteredProjects);
+}); 
+
+let svg = d3.select('svg');
+svg.selectAll('path').remove();
+arcs.forEach((arc, i) => {
+  svg
+    .append('path')
+    .attr('d', arc)
+    .attr('fill', colors(i))
+    .on('click', () => {
+    selectedIndex = selectedIndex === i ? -1 : i;
+
+    svg
+        .selectAll('path')
+        .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct pie slice and apply CSS from above
+        selectedIndex === idx ? 'selected' : null
+        ));
+    });
+});
+legend
+    .selectAll('li')
+    .attr('class', (_, idx) => (
+      // TODO: filter idx to find correct legend and apply CSS from above
+        selectedIndex === idx ? 'selected' : null
+    ));
+if (selectedIndex === -1) {
+  renderProjects(projects, projectsContainer, 'h2');
+} else {
+  // TODO: filter projects and project them onto webpage
+    const selectedYear = data[selectedIndex].label;
+    const filteredProjects = projects.filter(proj => proj.year == selectedYear);
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+}
+  // Hint: `.label` might be useful
