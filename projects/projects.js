@@ -63,15 +63,22 @@ arcs.forEach((pathData, idx) => {
 });
 
 // how you add class name as attributes using D3
+// ... after d3 is defined and data/colors are set ...
+
 let legend = d3.select('.legend');
 data.forEach((d, idx) => {
-    legend.append('li')
-          .attr('style', `--color:${colors(idx)}`)
-          .attr('class', 
-            'legend-item'
-          )
-            .text(`${d.label} (${d.value})`);
-})
+    // 1. Append the <li> element, setting the CSS variable
+    const listItem = legend.append('li')
+        .attr('style', `--color: ${colors(idx)}`);
+        
+    // 2. Append the Swatch (using <span> for simplicity, applying the .swatch class)
+    listItem.append('span')
+        .attr('class', 'swatch');
+
+    // 3. Append the Label Text
+    listItem.append('span')
+        .text(`${d.label} (${d.value})`);
+});
 
 
 //write a code below to display the year of each project based on projects.json assuming each project object has a year property. the font should be Baskerville, italicized and the numeric font should be font-variant-numeric: oldstyle-nums

@@ -129,12 +129,14 @@ You may find border-radius useful to add slight rounding to the corners or even 
 */
 .legend {
     list-style: none;
-    padding: 0;
-    margin: 1em 0;
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
+    flex: 1;
     align-items: center;
+    border: 1px solid oklch(60.039% 0.21333 341.555);
+    padding: 1em;
+    margin: 2em 0;
 }
 
 /*Applying layout on the list to make it look like a legend
@@ -177,4 +179,18 @@ Make sure the gap you specify for the <li>s is smaller than the gap you specify 
     padding: 1em;
     margin: 2em 0;
     align-items: center;
+}
+
+.chart-legend-container {
+    /* 1. Enable Flexbox on the container */
+    /* This makes the SVG and the UL elements align horizontally (row direction by default) */
+    display: flex;
+    
+    /* 2. Vertical Alignment */
+    /* Centers the chart and the legend relative to each other's vertical space */
+    align-items: center; 
+    
+    /* 3. Spacing/Gap */
+    /* Adds space between the SVG (chart) and the UL (legend) */
+    gap: 20px; /* You can adjust this value */
 }
