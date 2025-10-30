@@ -118,43 +118,59 @@ h2 {
   margin: 0;
 }
 
-/* --- 1. Styling the Legend Container (The Grid) --- */
+/* We need to add some CSS to make it look like an actual legend. You can experiment with the styles to make it look the way you want, but we’re including some tips below. Also note that the trick here is we added a <span> with a “swatch” class to each <li> so we can style them.
+
+Making the swatch look like a swatch
+You could probably want to make the swatch look like a swatch by:
+
+Making it a square by e.g. giving it the same width and height, or declaring one of the two properties (e.g. width or height) plus aspect-ratio: 1 / 1.
+Giving it a background color of var(--color)
+You may find border-radius useful to add slight rounding to the corners or even make it into a full circle by setting it to 50%.
+*/
 .legend {
     list-style: none;
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    font-family: inherit;
-    font-size: 0.8em;
-    background: var(--color-bg, #f0f0f0); /* Added default colors for safety */
-    padding: 0.5em; 
-    border: 1px solid var(--color-text, #d43597);
-    
-    /* Apply Grid Layout for Responsive Columns */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-    gap: 1em; /* Spacing between columns/rows (larger gap) */
-}
-
-/* --- 2. Styling the List Item (The Flex Container) --- */
-.legend-item {
-    /* Apply Flex Layout for vertical alignment */
+    padding: 0;
+    margin: 1em 0;
     display: flex;
-    align-items: center; /* Vertically center align swatch and text */
-    gap: 0.5em; /* Spacing between the swatch and the text (smaller gap) */
+    gap: 1em;
+    flex-wrap: wrap;
 }
 
-/* --- 3. Styling the Swatch (The Square) --- */
-.swatch {
-    /* Set it to inline-block to accept width/height */
-    display: inline-block;
-    
-    /* Make it a square and set the color */
-    width: 1em;
-    aspect-ratio: 1 / 1; /* Ensures it's a perfect square */
-    background-color: var(--color); /* Uses the color passed from D3 */
-    
-    /* Add slight rounding to the corners */
-    border-radius: 3px; 
-    /* Optionally, set border-radius: 50% to make it a circle */
+/*Applying layout on the list to make it look like a legend
+I applied display: grid to the <ul> (avoid using the <ul> tag selector, use selector by class instead). To make the grid make best use of available space, I used an auto-fill grid template, and set the min-width of the list items to a reasonable value.
+
+grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+This lays them all out on one line if there’s space, or multiple columns if not.
+
+I also applied display: flex on each <li> (also give it a class name and apply CSS rule on the class) to vertically center align the text and the swatch (align-items: center) and give it spacing via gap.
+
+// how you add class name as attributes using D3
+let legend = d3.select('.legend');
+data.forEach((d, idx) => {
+    legend.append('li')
+          .attr('style', `--color:${colors(idx)}`)
+          .attr('class', ...)
+          ...
+})
+Make sure the gap you specify for the <li>s is smaller than the gap you specify for the whole legend’s grid, to honor the design principle of Proximity.*/
+.legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.legend .swatch {
+    width: 1.5em;
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color);
+    border-radius: 0.3em;
+}
+.legend li span {
+    font-size: 0.9em;
+}
+/*You probably also want to specify a border around the legend, as well as spacing inside it (padding) and around it (margin). The final result will vary depending on your exact CSS, but this was mine:*/
+.legend {
+    border: 1px solid oklch(60.039% 0.21333 341.555);
+    padding: 1em;
+    margin: 2em 0;
 }

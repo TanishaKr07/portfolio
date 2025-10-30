@@ -10,20 +10,7 @@ const projectsTitle = document.querySelector('.projects-title');
 const projectCount = projects.length;
 projectsTitle.textContent = `Projects (${projectCount})`;
 
-//write a code below to display the year of each project based on projects.json assuming each project object has a year property. the font should be Baskerville, italicized and the numeric font should be font-variant-numeric: oldstyle-nums
-projects.forEach(project => {
-  const projectArticles = projectsContainer.querySelectorAll('article');
-    projectArticles.forEach(article => {
-        if (article.querySelector('h2').textContent === project.title) {
-            const yearElement = document.createElement('div');
-            yearElement.textContent = project.year;
-            yearElement.style.fontFamily = 'Baskerville, serif';
-            yearElement.style.fontStyle = 'italic';
-            yearElement.style.fontVariantNumeric = 'oldstyle-nums';
-            article.appendChild(yearElement);
-        }
-    });
-});
+
 
 // 1. Define the Arc Generator (The "Drawer" that knows the shape)
 // We rename the variable from 'arc' to 'arcGenerator' for clarity and
@@ -59,30 +46,36 @@ arcs.forEach((pathData, idx) => {
       .attr('fill', colors(idx)); 
 });
 
-// --- 2. Build the Legend ---
+// how you add class name as attributes using D3
 let legend = d3.select('.legend');
+data.forEach((d, idx) => {
+    legend.append('li')
+          .attr('style', `--color:${colors(idx)}`)
+          .attr('class', 
+            'legend-item'
+          )
+            .text(`${d.label} (${d.value})`);
+})
 
-// Iterate over the arcData, which holds the original data object in d.data
-arcData.forEach((d) => {
-    // Get the original index to use with the color scale
-    const idx = d.index;
-    
-    // Get the label and value from the original data object (d.data)
-    const label = d.data.label || `Slice ${idx + 1}`;
-    const value = d.data.value;
 
-    let listItem = legend.append('li')
-        // Apply the class for the item's layout (required for flex/grid)
-        .attr('class', 'legend-item') 
+//write a code below to display the year of each project based on projects.json assuming each project object has a year property. the font should be Baskerville, italicized and the numeric font should be font-variant-numeric: oldstyle-nums
+// Get all the rendered article elements once
+const projectArticles = projectsContainer.querySelectorAll('article');
+
+// Loop over the articles and the project data simultaneously
+projectArticles.forEach((article, i) => {
+    const project = projects[i]; // Get the corresponding project object by index
+
+    if (project && project.year) { // Check if the project and year exist
+        const yearElement = document.createElement('div');
+        yearElement.textContent = project.year;
         
-        // Pass the color value as a CSS variable using the correct function call: colors(idx)
-        .attr('style', `--color: ${colors(idx)}`); 
-
-    // The most flexible way: append elements separately
-    listItem.append('span')
-        .attr('class', 'swatch'); // Apply the swatch styling class
+        // Apply the styles (Consider moving these to style.css for cleaner code)
+        yearElement.style.fontFamily = 'Baskerville, serif';
+        yearElement.style.fontStyle = 'italic';
+        yearElement.style.fontVariantNumeric = 'oldstyle-nums';
         
-    listItem.append('text')
-        // Use a mix of the label (strong) and value (em)
-        .html(`<strong>${label}</strong> <em>(${value})</em>`);
+        // Find where to append the year, typically inside the article itself
+        article.appendChild(yearElement);
+    }
 });
