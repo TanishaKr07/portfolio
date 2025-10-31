@@ -112,6 +112,13 @@ searchInput.addEventListener('change', (event) => {
 
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
+    //Both the search and pie chart event listeners independently call renderProjects() 
+    // on the full dataset, which means their filters don’t actually interact. However, 
+    // when the search query runs first, it also calls renderPieChart(filteredProjects), 
+    // which rebuilds the pie chart using only the filtered subset of data. As a result, t
+    // he pie chart’s new internal data now represents that smaller dataset, making subsequent 
+    // pie-slice selections appear to work “in combination” with the search - even though 
+    // they’re not truly linked
 }); 
 
 // Call on page load
