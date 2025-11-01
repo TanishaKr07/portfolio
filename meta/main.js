@@ -183,8 +183,11 @@ function updateTooltipVisibility(isVisible) {
 
 function updateTooltipPosition(event) {
   const tooltip = document.getElementById('commit-tooltip');
-  tooltip.style.left = `${event.clientX}px`;
-  tooltip.style.top = `${event.clientY}px`;
+//   tooltip.style.left = `${event.clientX}px`;
+//   tooltip.style.top = `${event.clientY}px`;
+  // Use page coordinates for better positioning
+  tooltip.style.left = `${event.pageX + offset}px`;
+  tooltip.style.top = `${event.pageY + offset}px`;
 }
 
 let data = await loadData();
