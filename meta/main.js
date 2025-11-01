@@ -74,7 +74,6 @@ function analyzeData(data) {
 
   console.log({ fileLengths, averageFileLength, workByPeriod, maxPeriod });
 }
-analyzeData(data);
 
 function renderScatterPlot(data, commits) {
   // Put all the JS code of Steps inside this function
@@ -149,4 +148,5 @@ function renderScatterPlot(data, commits) {
 let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
+analyzeData(data);
 renderScatterPlot(data, commits);
