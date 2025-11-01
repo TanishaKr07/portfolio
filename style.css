@@ -274,11 +274,3 @@ dl.info[hidden]:not(:hover, :focus-within) {
   opacity: 0;
   visibility: hidden;
 }
-#commit-tooltip {
-  position: absolute;
-  pointer-events: none;
-  background: mediumvioletred;
-  border: 1px solid mediumvioletred;
-  padding: 5px 10px;
-  z-index: 1000;
-}
