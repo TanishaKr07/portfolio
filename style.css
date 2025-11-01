@@ -228,3 +228,14 @@ a class .stats and style the dl, dt, and dd elements appropriately.*/
   border-radius: 1em;
   box-shadow: 0 4px 10px mediumvioletred;
 }
+
+/* Make gridlines light and thin */
+.gridlines line {
+  stroke: #ccc;        /* light gray color */
+  stroke-opacity: 0.4; /* make them semi-transparent */
+  shape-rendering: crispEdges; /* prevents fuzzy anti-aliasing */
+}
+
+.gridlines path {
+  stroke: none; /* hide the axis baseline */
+}
