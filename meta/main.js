@@ -174,6 +174,9 @@ function renderTooltipContent(commit) {
   date.textContent = commit.datetime?.toLocaleString('en', {
     dateStyle: 'full',
   });
+  document.getElementById('commit-time').textContent = commit.time;
+  document.getElementById('commit-author').textContent = commit.author;
+  document.getElementById('lines-edited').textContent = commit.totalLines
 }
 
 function updateTooltipVisibility(isVisible) {
