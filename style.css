@@ -227,6 +227,7 @@ a class .stats and style the dl, dt, and dd elements appropriately.*/
   background: rgba(102, 97, 102, 0.11);
   border-radius: 1em;
   box-shadow: 0 4px 10px mediumvioletred;
+  text-align: center;
 }
 
 /* Make gridlines light and thin */
@@ -238,10 +239,4 @@ a class .stats and style the dl, dt, and dd elements appropriately.*/
 
 .gridlines path {
   stroke: none; /* hide the axis baseline */
-}
-
-#stats dl {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
 }
