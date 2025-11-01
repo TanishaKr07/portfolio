@@ -55,8 +55,6 @@ function renderCommitInfo(data, commits) {
   // Add more stats as needed...
 }
 
-renderCommitInfo(data, commits);
-
 function analyzeData(data) {
   const fileLengths = d3.rollups(
     data,
@@ -150,5 +148,5 @@ function renderScatterPlot(data, commits) {
 
 let data = await loadData();
 let commits = processCommits(data);
-
+renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
