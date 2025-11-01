@@ -221,6 +221,8 @@ path.selected {
 /*Add the CSS for the stats display to your style.css file. You can create 
 a class .stats and style the dl, dt, and dd elements appropriately.*/
 .stats {
+  display: flex;                /* Arrange items in a row */
+  justify-content: space-around; /* Space them evenly */
   margin: 2em auto;
   padding: 1.5em;
   max-width: 800px;
@@ -228,7 +230,17 @@ a class .stats and style the dl, dt, and dd elements appropriately.*/
   border-radius: 1em;
   box-shadow: 0 4px 10px mediumvioletred;
   text-align: center;
+  gap: 1em;                     /* Optional spacing between items */
 }
+
+.stats dt {
+  font-weight: bold;
+}
+
+.stats dd {
+  margin: 0 0 1em 0; /* Remove default spacing for better alignment */
+}
+
 
 /* Make gridlines light and thin */
 .gridlines line {
