@@ -152,6 +152,7 @@ function renderScatterPlot(data, commits) {
   .attr('r', 5)
   .attr('fill', 'steelblue')
   .on('mouseenter', (event, commit) => {
+    console.log(commit);
     renderTooltipContent(commit);
     updateTooltipVisibility(true);
     updateTooltipPosition(event);
