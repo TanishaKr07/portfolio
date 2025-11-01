@@ -10,10 +10,6 @@ const projectsTitle = document.querySelector('.projects-title');
 const projectCount = projects.length;
 projectsTitle.textContent = `Projects (${projectCount})`;
 
-
-
-// ... existing code ...
-
 // Define arcGenerator, colors, and selectedIndex globally
 const arcGenerator = d3.arc()
     .innerRadius(0)
@@ -47,9 +43,6 @@ function renderPieChart(projectsGiven, isInitialRender = false) {
     const legend = d3.select('.legend');
     legend.selectAll('li').remove();
 
-    // Store the updated data globally if needed for click handler outside of this function,
-    // or pass it to a new function.
-    // For simplicity, we'll keep the logic contained.
     
     // Update Paths (Pie Slices) with click listener
     const svg = d3.select('svg');
@@ -77,7 +70,7 @@ function renderPieChart(projectsGiven, isInitialRender = false) {
                 } else {
                     const selectedYear = newData[selectedIndex].label;
                     const filteredProjects = projects.filter(proj => proj.year == selectedYear);
-                    renderProjects(filteredProjects, projectsContainer, 'h2');
+                    renderProjects(filteredProjects, projectsContainer, 'h2'); //SEMI-BUG
                 }
             });
     });
@@ -111,7 +104,7 @@ searchInput.addEventListener('change', (event) => {
     selectedIndex = -1;
 
     renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects);
+    renderPieChart(filteredProjects);//SEMI-BUG
     //Both the search and pie chart event listeners independently call renderProjects() 
     // on the full dataset, which means their filters don’t actually interact. However, 
     // when the search query runs first, it also calls renderPieChart(filteredProjects), 
