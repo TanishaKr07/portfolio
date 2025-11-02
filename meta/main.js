@@ -175,6 +175,7 @@ function renderScatterPlot(data, commits) {
     d3.select(event.currentTarget).style('fill-opacity', 0.7);
     updateTooltipVisibility(false);
   });
+  
   createBrushSelector(svg);
 
 }
@@ -241,7 +242,7 @@ function brushed(event) {
   return selectedCommits;
 }
 
-svg.call(d3.brush().on('start brush end', brushed));
+// svg.call(d3.brush().on('start brush end', brushed));
 
 
 const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
