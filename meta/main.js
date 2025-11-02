@@ -1,5 +1,8 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
+let xScale;
+let yScale;
+
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
     ...row,
@@ -196,6 +199,52 @@ function updateTooltipPosition(event) {
 
 let data = await loadData();
 let commits = processCommits(data);
+
+function createBrushSelector(svg) {
+  // Create brush
+  svg.call(d3.brush());
+
+// Raise dots and everything after overlay
+  svg.selectAll('.dots, .overlay ~ *').raise();
+}
+
+createBrushSelector(svg);
+
+function isCommitSelected(selection, commit) { 
+  if (!selection) { 
+    return false; 
+  } 
+  const [x0, x1] = selection.map((d) => d[0]); 
+  const [y0, y1] = selection.map((d) => d[1]); 
+  const x = xScale(commit.datetime); 
+  const y = yScale(commit.hourFrac); 
+  return x >= x0 && x <= x1 && y >= y0 && y <= y1;}
+
+
+function renderSelectionCount(selection) {
+  const selectedCommits = selection
+    ? commits.filter((d) => isCommitSelected(selection, d))
+    : [];
+
+  const countElement = document.querySelector('#selection-count');
+  countElement.textContent = `${
+    selectedCommits.length || 'No'
+  } commits selected`;
+
+  return selectedCommits;
+}
+
+function brushed(event) {
+  const selection = event.selection;
+  d3.selectAll('circle').classed('selected', (d) =>
+    isCommitSelected(selection, d),
+  );
+  const selectedCommits = renderSelectionCount(selection);
+  return selectedCommits;
+}
+
+svg.call(d3.brush().on('start brush end', brushed));
+
 
 const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
 const rScale = d3
