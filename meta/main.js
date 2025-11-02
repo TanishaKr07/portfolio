@@ -194,14 +194,15 @@ function updateTooltipPosition(event) {
   tooltip.style.top = `${event.clientY}px`;
 }
 
+let data = await loadData();
+let commits = processCommits(data);
+
 const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
 const rScale = d3
   .scaleSqrt() // Change only this line
   .domain([minLines, maxLines])
   .range([2, 30]);
 
-let data = await loadData();
-let commits = processCommits(data);
 renderCommitInfo(data, commits);
 analyzeData(data);
 renderScatterPlot(data, commits);
