@@ -146,6 +146,14 @@ function renderScatterPlot(data, commits) {
   .append('g')
   .attr('transform', `translate(${usableArea.left}, 0)`)
   .call(yAxis);
+
+  function createBrushSelector(svg) {
+  // Create brush
+  svg.call(d3.brush());
+
+// Raise dots and everything after overlay
+  svg.selectAll('.dots, .overlay ~ *').raise();
+}
   
   dots
   .selectAll('circle')
@@ -167,6 +175,7 @@ function renderScatterPlot(data, commits) {
     d3.select(event.currentTarget).style('fill-opacity', 0.7);
     updateTooltipVisibility(false);
   });
+  createBrushSelector(svg);
 
 }
 
@@ -200,16 +209,6 @@ function updateTooltipPosition(event) {
 let data = await loadData();
 let commits = processCommits(data);
 
-function createBrushSelector(svg) {
-  // Create brush
-  svg.call(d3.brush());
-
-// Raise dots and everything after overlay
-  svg.selectAll('.dots, .overlay ~ *').raise();
-}
-
-createBrushSelector(svg);
-
 function isCommitSelected(selection, commit) { 
   if (!selection) { 
     return false; 
@@ -230,7 +229,6 @@ function renderSelectionCount(selection) {
   countElement.textContent = `${
     selectedCommits.length || 'No'
   } commits selected`;
-
   return selectedCommits;
 }
 
