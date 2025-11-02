@@ -148,10 +148,12 @@ function renderScatterPlot(data, commits) {
   .call(yAxis);
 
   function createBrushSelector(svg) {
-  // Create brush
-  svg.call(d3.brush());
+  const brush = d3.brush()
+    .on('start brush end', brushed);
 
-// Raise dots and everything after overlay
+  svg.call(brush);
+
+  // Raise dots above the brush overlay
   svg.selectAll('.dots, .overlay ~ *').raise();
 }
   
