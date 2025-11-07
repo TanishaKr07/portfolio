@@ -240,8 +240,8 @@ function brushed(event) {
   d3.selectAll('circle').classed('selected', (d) =>
     isCommitSelected(selection, d),
   );
-  const selectedCommits = renderSelectionCount(selection);
-  return selectedCommits;
+  renderSelectionCount(selection);
+  renderLanguageBreakdown(selection);
 }
 
 // svg.call(d3.brush().on('start brush end', brushed));
@@ -252,6 +252,42 @@ const rScale = d3
   .scaleSqrt() // Change only this line
   .domain([minLines, maxLines])
   .range([2, 30]);
+
+
+function renderLanguageBreakdown(selection) {
+  const selectedCommits = selection
+    ? commits.filter((d) => isCommitSelected(selection, d))
+    : [];
+  const container = document.getElementById('language-breakdown');
+
+  if (selectedCommits.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+  const lines = requiredCommits.flatMap((d) => d.lines);
+
+  // Use d3.rollup to count lines per language
+  const breakdown = d3.rollup(
+    lines,
+    (v) => v.length,
+    (d) => d.type,
+  );
+
+  // Update DOM with breakdown
+  container.innerHTML = '';
+
+  for (const [language, count] of breakdown) {
+    const proportion = count / lines.length;
+    const formatted = d3.format('.1~%')(proportion);
+
+    container.innerHTML += `
+            <dt>${language}</dt>
+            <dd>${count} lines (${formatted})</dd>
+        `;
+  }
+}
+
 
 renderCommitInfo(data, commits);
 analyzeData(data);
