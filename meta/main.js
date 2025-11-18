@@ -381,7 +381,7 @@ let filesContainer = d3
         div.append('dt').append('code');
         div.append('dd');
       }),
-  )
+  );
 
 // This code updates the div info
 filesContainer.select('dt > code').text((d) => d.name);
