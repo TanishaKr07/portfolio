@@ -299,3 +299,22 @@ dl.info[hidden]:not(:hover, :focus-within) {
 circle.selected {
   fill: rgb(99, 14, 68);
 }
+
+#files {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+
+  > div {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  dt {
+    grid-column: 1;
+  }
+
+  dd {
+    grid-column: 2;
+  }
+}

@@ -299,6 +299,13 @@ let timeScale = d3
 let commitMaxTime = timeScale.invert(commitProgress);
 // Will get updated as user changes slider
 let filteredCommits = commits;
+// after initializing filteredCommits
+let lines = filteredCommits.flatMap((d) => d.lines);
+let files = d3
+  .groups(lines, (d) => d.file)
+  .map(([name, lines]) => {
+    return { name, lines };
+  });
 function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
   commitProgress = +slider.value;
@@ -359,6 +366,23 @@ function updateScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 }
+
+let filesContainer = d3
+  .select('#files')
+  .selectAll('div')
+  .data(files, (d) => d.name)
+  .join(
+    // This code only runs when the div is initially rendered
+    (enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt').append('code');
+        div.append('dd');
+      }),
+  );
+
+// This code updates the div info
+filesContainer.select('dt > code').text((d) => d.name);
+filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
 
 document
   .getElementById("commit-progress")
