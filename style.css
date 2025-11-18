@@ -325,8 +325,7 @@ circle.selected {
   background: mediumvioletred;
   border-radius: 50%;
 }
-dd {
-  grid-column: 2;
+#files dd {
   display: flex;
   flex-wrap: wrap;
   align-items: start;
