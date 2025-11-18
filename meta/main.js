@@ -361,7 +361,7 @@ function updateScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 }
-//let colors = d3.scaleOrdinal(d3.schemeTableau10);
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 function updateFilesDisplay(filteredCommits){
 
@@ -397,8 +397,8 @@ function updateFilesDisplay(filteredCommits){
     .selectAll('div')
     .data((d) => d.lines)
     .join('div')
-    .attr('class', 'loc');
-    //.attr('style', (d) => `--color: ${colors(d.type)}`);
+    .attr('class', 'loc')
+    .attr('style', (d) => `--color: ${colors(d.type)}`);
 
 }
 
