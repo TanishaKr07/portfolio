@@ -369,4 +369,4 @@ onTimeSliderChange(); // Initialize display
 renderCommitInfo(data, commits);
 analyzeData(data);
 renderScatterPlot(data, commits);
-updateScatterPlot(data, commits)
+updateScatterPlot(data, filteredCommits)
