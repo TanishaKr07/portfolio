@@ -259,10 +259,15 @@ circle {
   transform-origin: center;
   transform-box: fill-box;
   fill: mediumvioletred
+  
 }
 
 circle:hover {
   transform: scale(1.5);
+}
+
+@starting-style {
+  to {r: 0};
 }
 
 dl.info {
@@ -280,6 +285,7 @@ dl.info[hidden]:not(:hover, :focus-within) {
   to {
     stroke-dashoffset: -8; /* 5 + 3 */
   }
+
 }
 
 .selection {
