@@ -298,15 +298,6 @@ let timeScale = d3
   .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
 // Will get updated as user changes slider
-//let filteredCommits = commits;
-function onTimeSliderChange() {
-  const slider = document.getElementById('commit-progress');
-  commitProgress = +slider.value;
-  commitMaxTime = timeScale.invert(commitProgress);
-  document.getElementById('commit-time').textContent =
-    commitMaxTime.toLocaleString();
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-}
 
 function updateScatterPlot(data, commits) {
   const width = 1000;
@@ -320,6 +311,17 @@ function updateScatterPlot(data, commits) {
     width: width - margin.left - margin.right,
     height: height - margin.top - margin.bottom,
   };
+
+let filteredCommits = commits;
+function onTimeSliderChange() {
+  const slider = document.getElementById('commit-progress');
+  commitProgress = +slider.value;
+  commitMaxTime = timeScale.invert(commitProgress);
+  document.getElementById('commit-time').textContent =
+    commitMaxTime.toLocaleString();
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  updateScatterPlot(data, filteredCommits)
+}
 
   const svg = d3.select('#chart').select('svg');
 
@@ -369,4 +371,3 @@ onTimeSliderChange(); // Initialize display
 renderCommitInfo(data, commits);
 analyzeData(data);
 renderScatterPlot(data, commits);
-updateScatterPlot(data, filteredCommits)
