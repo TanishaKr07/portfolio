@@ -307,7 +307,8 @@ let files = d3
     return { name, lines };
   })
   .sort((a, b) => b.lines.length - a.lines.length);
-function onTimeSliderChange() {
+
+  function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
   commitProgress = +slider.value;
   commitMaxTime = timeScale.invert(commitProgress);
@@ -315,6 +316,7 @@ function onTimeSliderChange() {
     commitMaxTime.toLocaleString();
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits)
+  updateFilesDisplay(filteredCommits)
 }
 
 function updateScatterPlot(data, commits) {
@@ -369,31 +371,35 @@ function updateScatterPlot(data, commits) {
 }
 //let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
+function updateFilesDisplay(filteredCommits){
+  
+  let filesContainer = d3
+    .select('#files')
+    .selectAll('div')
+    .data(files, (d) => d.name)
+    .join(
+      // This code only runs when the div is initially rendered
+      (enter) =>
+        enter.append('div').call((div) => {
+          div.append('dt').append('code');
+          div.append('dd');
+        }),
+    );
 
-let filesContainer = d3
-  .select('#files')
-  .selectAll('div')
-  .data(files, (d) => d.name)
-  .join(
-    // This code only runs when the div is initially rendered
-    (enter) =>
-      enter.append('div').call((div) => {
-        div.append('dt').append('code');
-        div.append('dd');
-      }),
-  );
+  // This code updates the div info
+  filesContainer.select('dt > code').text((d) => d.name);
+  filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+  
+  // append one div for each line
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc');
+    //.attr('style', (d) => `--color: ${colors(d.type)}`);
 
-// This code updates the div info
-filesContainer.select('dt > code').text((d) => d.name);
-filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
-// append one div for each line
-filesContainer
-  .select('dd')
-  .selectAll('div')
-  .data((d) => d.lines)
-  .join('div')
-  .attr('class', 'loc');
-  //.attr('style', (d) => `--color: ${colors(d.type)}`);
+}
 
 
 document
