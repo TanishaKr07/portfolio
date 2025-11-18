@@ -306,6 +306,9 @@ function onTimeSliderChange() {
     commitMaxTime.toLocaleString();
 }
 
+document
+  .getElementById("commit-progress")
+  .addEventListener("input", onTimeSliderChange);
 
 
 onTimeSliderChange(); // Initialize display
