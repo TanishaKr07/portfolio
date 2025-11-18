@@ -298,7 +298,7 @@ let timeScale = d3
   .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
 // Will get updated as user changes slider
-//let filteredCommits = commits;
+let filteredCommits = commits;
 function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
   commitProgress = +slider.value;
