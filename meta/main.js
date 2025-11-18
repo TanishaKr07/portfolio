@@ -288,7 +288,27 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
+let commitProgress = 100;
+let timeScale = d3
+  .scaleTime()
+  .domain([
+    d3.min(commits, (d) => d.datetime),
+    d3.max(commits, (d) => d.datetime),
+  ])
+  .range([0, 100]);
+let commitMaxTime = timeScale.invert(commitProgress);
 
+function onTimeSliderChange() {
+  const slider = document.getElementById('commit-progress');
+  commitProgress = +slider.value;
+  commitMaxTime = timeScale.invert(commitProgress);
+  document.getElementById('commit-time').textContent =
+    commitMaxTime.toLocaleString();
+}
+
+
+
+onTimeSliderChange(); // Initialize display
 renderCommitInfo(data, commits);
 analyzeData(data);
 renderScatterPlot(data, commits);
