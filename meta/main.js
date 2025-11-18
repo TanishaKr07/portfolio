@@ -366,6 +366,7 @@ function updateScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 }
+let colors = d3.scaleOrdinal(d3.schemePRGn[11]);
 
 let filesContainer = d3
   .select('#files')
@@ -378,11 +379,26 @@ let filesContainer = d3
         div.append('dt').append('code');
         div.append('dd');
       }),
-  );
+  )
+  .groups(lines, (d) => d.file)
+  .map(([name, lines]) => {
+    return { name, lines };
+  })
+  .sort((a, b) => b.lines.length - a.lines.length)
+  attr('style', (d) => `--color: ${colors(d.type)}`);
 
 // This code updates the div info
 filesContainer.select('dt > code').text((d) => d.name);
 filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+// append one div for each line
+filesContainer
+  .select('dd')
+  .selectAll('div')
+  .data((d) => d.lines)
+  .join('div')
+  .attr('class', 'loc')
+  .attr('style', (d) => `--color: ${colors(d.type)}`);
+
 
 document
   .getElementById("commit-progress")
