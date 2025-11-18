@@ -305,7 +305,8 @@ let files = d3
   .groups(lines, (d) => d.file)
   .map(([name, lines]) => {
     return { name, lines };
-  });
+  })
+  .sort((a, b) => b.lines.length - a.lines.length);
 function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
   commitProgress = +slider.value;
@@ -368,6 +369,7 @@ function updateScatterPlot(data, commits) {
 }
 let colors = d3.scaleOrdinal(d3.schemePRGn[11]);
 
+
 let filesContainer = d3
   .select('#files')
   .selectAll('div')
@@ -380,12 +382,6 @@ let filesContainer = d3
         div.append('dd');
       }),
   )
-  .groups(lines, (d) => d.file)
-  .map(([name, lines]) => {
-    return { name, lines };
-  })
-  .sort((a, b) => b.lines.length - a.lines.length)
-  attr('style', (d) => `--color: ${colors(d.type)}`);
 
 // This code updates the div info
 filesContainer.select('dt > code').text((d) => d.name);
