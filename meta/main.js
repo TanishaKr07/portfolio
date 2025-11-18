@@ -364,7 +364,7 @@ function updateScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 }
-let colors = d3.scaleDiverging(d3.interpolatePiYG);
+let colors = d3.scaleOrdinal(d3.schemePastel2);
 
 function updateFilesDisplay(filteredCommits){
 
