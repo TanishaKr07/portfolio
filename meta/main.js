@@ -299,14 +299,6 @@ let timeScale = d3
 let commitMaxTime = timeScale.invert(commitProgress);
 // Will get updated as user changes slider
 let filteredCommits = commits;
-// after initializing filteredCommits
-let lines = filteredCommits.flatMap((d) => d.lines);
-let files = d3
-  .groups(lines, (d) => d.file)
-  .map(([name, lines]) => {
-    return { name, lines };
-  })
-  .sort((a, b) => b.lines.length - a.lines.length);
 
   function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
@@ -372,6 +364,15 @@ function updateScatterPlot(data, commits) {
 //let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 function updateFilesDisplay(filteredCommits){
+
+  // after initializing filteredCommits
+  let lines = filteredCommits.flatMap((d) => d.lines);
+  let files = d3
+  .groups(lines, (d) => d.file)
+  .map(([name, lines]) => {
+    return { name, lines };
+  })
+  .sort((a, b) => b.lines.length - a.lines.length);
   
   let filesContainer = d3
     .select('#files')
