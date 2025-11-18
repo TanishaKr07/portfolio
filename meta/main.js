@@ -49,11 +49,11 @@ function renderCommitInfo(data, commits) {
 
   // Add total LOC
   dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
-  dl.append('dd').text(data.length);
+  dl.append('dd').text(data.length).attr('id', 'stat-total-loc');
 
   // Add total commits
   dl.append('dt').text('Total commits');
-  dl.append('dd').text(commits.length);
+  dl.append('dd').text(commits.length).attr('id', 'stat-total-commits');
 
   // Add more stats as needed...
 }
@@ -307,6 +307,9 @@ let filteredCommits = commits;
   document.getElementById('commit-time').textContent =
     commitMaxTime.toLocaleString();
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  document.getElementById('stat-total-commits').textContent = filteredCommits.length;
+  document.getElementById("stat-total-loc").textContent =
+    d3.sum(filteredCommits, d => d.totalLines);
   updateScatterPlot(data, filteredCommits)
   updateFilesDisplay(filteredCommits)
 }
@@ -390,6 +393,8 @@ function updateFilesDisplay(filteredCommits){
   // This code updates the div info
   filesContainer.select('dt > code').text((d) => d.name);
   filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+
+  //update the Total LOC and total Committ
   
   // append one div for each line
   filesContainer
