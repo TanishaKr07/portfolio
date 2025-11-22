@@ -457,34 +457,6 @@ function onStepEnter(response) {
   updateFilesDisplay(filteredCommits);
 }
 
-
-
-
-
-
-function onTimeSliderChange() {
-  const slider = document.getElementById('commit-progress');
-  commitProgress = +slider.value;
-  commitMaxTime = timeScale.invert(commitProgress);
-  document.getElementById('commit-time').textContent =
-    commitMaxTime.toLocaleString();
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-  document.getElementById('stat-total-commits').textContent = filteredCommits.length;
-  document.getElementById("stat-total-loc").textContent =
-    d3.sum(filteredCommits, d => d.totalLines);
-  updateScatterPlot(data, filteredCommits)
-  updateFilesDisplay(filteredCommits)
-}
-
-
-
-
-
-
-
-
-
-
 const scroller = scrollama();
 scroller
   .setup({
