@@ -301,7 +301,7 @@ let commitMaxTime = timeScale.invert(commitProgress);
 // Will get updated as user changes slider
 let filteredCommits = commits;
 
-  function onTimeSliderChange() {
+function onTimeSliderChange() {
   const slider = document.getElementById('commit-progress');
   commitProgress = +slider.value;
   commitMaxTime = timeScale.invert(commitProgress);
@@ -438,9 +438,52 @@ d3.select('#scatter-story')
 		Then I looked over all I had made, and I saw that it was very good.
 	`,
   );
+
 function onStepEnter(response) {
   console.log(response);
+  const commit = response.element.__data__;
+  commitMaxTime = commit.datetime;
+  document.getElementById('commit-time').textContent = commitMaxTime.toLocaleString();
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+
+  // Stats
+  document.getElementById('stat-total-commits').textContent =
+    filteredCommits.length;
+  document.getElementById("stat-total-loc").textContent =
+    d3.sum(filteredCommits, d => d.totalLines);
+
+  // Update visualizations, same as slider
+  updateScatterPlot(data, filteredCommits);
+  updateFilesDisplay(filteredCommits);
 }
+
+
+
+
+
+
+function onTimeSliderChange() {
+  const slider = document.getElementById('commit-progress');
+  commitProgress = +slider.value;
+  commitMaxTime = timeScale.invert(commitProgress);
+  document.getElementById('commit-time').textContent =
+    commitMaxTime.toLocaleString();
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  document.getElementById('stat-total-commits').textContent = filteredCommits.length;
+  document.getElementById("stat-total-loc").textContent =
+    d3.sum(filteredCommits, d => d.totalLines);
+  updateScatterPlot(data, filteredCommits)
+  updateFilesDisplay(filteredCommits)
+}
+
+
+
+
+
+
+
+
+
 
 const scroller = scrollama();
 scroller
